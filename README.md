@@ -117,8 +117,8 @@ May the festival of lights bring you joy, prosperity, and happiness! 🪔✨
 
 ---
 
-**Live Demo**: [Your Railway URL]
-**Repository**: [Your GitHub URL]
+**Live Demo**: fe-happydiwali-production.up.railway.app
+**Repository**: https://github.com/MRohithReddy/FE-HappyDiwali
 
 ### Code Splitting
 
