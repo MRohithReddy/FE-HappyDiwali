@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
+// Loading component
+const LoadingSpinner = () => {
+  return (
+    <div className="loading-container">
+      <div className="loading-spinner">
+        <div className="spinner-ring"></div>
+        <div className="spinner-ring"></div>
+        <div className="spinner-ring"></div>
+      </div>
+      <p className="loading-text">Loading Diwali Magic...</p>
+    </div>
+  );
+};
+
 // Firecracker component for animations
 const Firecracker = ({ delay, position }) => {
   const [isExploded, setIsExploded] = useState(false);
@@ -50,6 +64,7 @@ const Sparkle = ({ delay, position }) => {
 function App() {
   const [firecrackers, setFirecrackers] = useState([]);
   const [sparkles, setSparkles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Generate random firecrackers
   useEffect(() => {
@@ -85,11 +100,23 @@ function App() {
 
     generateFirecrackers();
     
+    // Simulate loading time for better UX
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    
     // Regenerate firecrackers every 4 seconds
     const interval = setInterval(generateFirecrackers, 4000);
     
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(loadingTimer);
+      clearInterval(interval);
+    };
   }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className="App">
